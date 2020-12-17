@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+    <div class="grid-container grid-2" id="container_transaksi">
+        <div>
+            <form method='post'>
+                {% csrf_token %}
+
+                <div class="input-group">
+                    <label for="column_filter">Kode Obat</label>
+                    <select name="kode_obat" id="column-filter" class="block">
+                        {% for kodeObat in listKodeObat %}
+                            <option value="{{kodeObat.kode_obat}}">{{kodeObat.kode_obat}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="tgl_transaksi">Tgl Transaksi</label>
+                    <input type="date" class="input" name="tgl_transaksi" id="tgl_transaksi" required min="2019-01-01" max="2019-04-30">
+                </div>
+
+                <div class="input-group">
+                    <label for="amount_purchased">Jumlah yang dibeli</label>
+                    <input type="number" class="input" name="jumlah_dibeli" id="amount_purchased" placeholder="Masukan Jumlah" min='0' max="100" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary block">Beli</button>
+            </form>
+        </div>
+
+        <div id="history-transaction">
+            <h3 class="primary">Histori Transaksi</h3>
+
+            {% if isEmpty %}
+                <p class="danger">Tidak ada histori</p>
+            {% else %}
+                
+                <table border="1" cellpadding="10" rules="all">
+                    <thead>
+                        <tr>
+                            <th>Kode Obat</th>
+                            <th>Tgl Transaksi</th>
+                            <th>Jumlah Terjual</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in transaksi %}
+                            <tr>    
+                                <td>{{item.kode_obat}}</td>
+                                <td>{{item.tgl_transaksi}}</td>
+                                <td><span class="text-right">{{item.jumlah_terjual}}</span></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            {% endif %}
+
+            {% if isGreaterThan5 %}
+                <a href="{% url 'transaksi:log' %}" class="text-right mt-10 primary">Lihat detail &raquo</a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock contents %}

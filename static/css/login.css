@@ -1,0 +1,15 @@
+.login-form {
+  width: 250px;
+}
+
+.input-group, .input-group label {
+  display: block;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  margin-bottom: 10px;
+}

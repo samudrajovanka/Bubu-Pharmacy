@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+    <p class="primary">Edit Obat Dengan Kode Obat <b>{{kodeObat}}</b></p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="grid-container grid-2">
+            <div class="input-group">
+                <label for="kode_obat">Kode Obat</label>
+                <input type="text" id="kode_obat" class="input" value="{{record.kode_obat}}" name="kode_obat" readonly>
+            </div>
+            <div class="input-group">
+                <label for="nama_obat">Nama Obat</label>
+                <input type="text" id="nama_obat" class="input" value="{{record.nama_obat}}" name="nama_obat" readonly>
+            </div>
+            <div class="input-group">
+                <label for="bentuk_obat">Bentuk Obat</label>
+                <input type="text" id="bentuk_obat" class="input" value="{{record.bentuk_obat}}" name="bentuk_obat" readonly>
+            </div>
+            <div class="input-group">
+                <label for="tgl_produksi">Tgl Produksi</label>
+                <input type="text" id="tgl_produksi" class="input" value="{{record.tgl_produksi}}" name="tgl_produksi" readonly>
+            </div>
+            <div class="input-group">
+                <label for="tgl_kadaluarsa">Tgl Kadaluarsa</label>
+                <input type="text" id="tgl_kadaluarsa" class="input" value="{{record.tgl_kadaluarsa}}" name="tgl_kadaluarsa" readonly>
+            </div>
+            <div class="input-group">
+                <label for="harga_satuan">Harga Satuan (Rp)</label>
+                <input type="number" id="harga_satuan" class="input" value="{{record.harga_satuan}}" name="harga_satuan">
+            </div>
+        </div>
+
+        <a href={% url 'obat:index' %} class="btn btn-primary-stroke mr-10">Kembali</a>
+        <button type="submit" class="btn btn-primary">Update</button>
+
+    </form>
+{% endblock contents %}

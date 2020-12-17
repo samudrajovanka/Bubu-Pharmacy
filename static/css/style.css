@@ -1,0 +1,161 @@
+@import "color.css";
+@import "general.css";
+@import "login.css";
+
+/* side bar */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: var(--dark-blue);
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+.sidebar p, .sidebar .item-nav {
+  display: block;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.sidebar .item-nav {
+  padding: 16px;
+}
+
+.sidebar p {
+  background-color: var(--light-blue);
+  margin: 0 0 20px 0;
+  padding: 30px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.sidebar .item-nav.active {
+  background-color: var(--yellow);
+  color: var(--dark-blue);
+}
+
+.sidebar .item-nav:hover:not(.active) {
+  background-color: rgba(252, 248, 118, .5);
+  color: var(--dark-blue);
+}
+
+.bottom-nav {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: var(--light-blue);
+}
+/* end side bar */
+
+/* main content */
+main.content {
+  margin-left: 200px;
+  padding: 20px;
+  min-height: 655px;
+  background-color: var(--light-gray);
+}
+
+.content .title {
+  color: var(--dark-blue);
+}
+
+.content .form-input {
+  width: 100%;
+  grid-template-columns: 15% auto 15%;
+  margin-bottom: 30px;
+  column-gap: 10px;
+  display: grid;
+}
+
+/* form */
+.content #column-filter {
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  cursor: pointer;
+  background-color: white;
+  color: var(--dark-blue);
+  border: 1px solid var(--dark-blue);
+}
+
+.content #column-filter option {
+  background-color: white;
+  color: var(--dark-blue);
+}
+/* end form */
+
+/* table */
+.content table {
+  border-color: var(--light-blue);
+  width: 100%;
+}
+
+.content table th {
+  background-color: var(--dark-blue);
+  color: white;
+}
+
+.content table tr {
+  background-color: white;
+}
+
+.content table tr:nth-child(even) {
+  background-color: var(--light-gray);
+}
+/* end table */
+
+/* transaksi */
+.grid-container.grid-2#container_transaksi {
+  grid-template-columns: auto 50%;
+}
+
+#history-transaction {
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 7px 0 var(--gray);
+}
+/* end transaksi */
+/* end main */
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .sidebar a {
+    float: left;
+  }
+
+  .bottom-nav {
+    right: 0;
+    width: 100px;
+    background-color: transparent;
+  }
+
+  main.content {
+    margin-left: 0;
+  }
+
+  .sidebar p {
+    margin-bottom: 0;
+  }
+
+  .content .title {
+    text-align: center;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}

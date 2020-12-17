@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link rel="short icon" href="{% static "img/icon_medicine.png" %}">
+    <title>Bubu Pharmacy | {{title}}</title>
+</head>
+<body>
+
+    {% include 'snippets/sidebar.html' %}
+
+    <main class="content">
+
+        <h1 class="title">{{title}}</h1>
+
+        {% block contents %}
+            <form method="post" class="form-input">
+                {% csrf_token %}
+
+                <select name="column" id="column-filter">
+                    <option value="kode_obat">Kode Obat</option>
+                    <option value="nama_obat">Nama Obat</option>
+                    <option value="bentuk_obat">Bentuk Obat</option>
+                    <option value="tgl_produksi">Tgl Produksi</option>
+                    <option value="tgl_kadaluarsa">Tgl Kadaluarsa</option>
+                    <option value="harga_satuan">Harga Satuan</option>
+                    <option value="jumlah_sedia">Jumlah Sedia</option>
+                </select>
+
+                <input type="text" class="input" id="filter-query" name="value-filter" placeholder="Value Filter" required>
+
+                <button type="submit" class="btn btn-primary">Filter</button>
+
+            </form>
+
+            <p class="primary {{hide}}">Filter berdasarkan <b>{{column}} = {{valueFilter}}</b></p>
+
+            {% if isEmpty %}
+                <h3 class="danger">Tidak ada data</h3>
+            {% else %}
+
+                <table border="1" cellpadding="10" rules="all">
+                    <thead>
+                        <tr>
+                            <th>Kode Obat</th>
+                            <th>Nama Obat</th>
+                            <th>Bentuk Obat</th>
+                            <th>Tgl Produksi</th>
+                            <th>Tgl Kadaluarsa</th>
+                            <th>Harga Satuan</th>
+                            <th>Jumlah Sedia</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        
+                        {% for record in records %}
+                            <tr>
+                                <td>{{record.KODE_OBAT}}</td>
+                                <td>{{record.NAMA_OBAT}}</td>
+                                <td>{{record.BENTUK_OBAT}}</td>
+                                <td>{{record.TGL_PRODUKSI}}</td>
+                                <td>{{record.TGL_KADALUARSA}}</td>
+                                <td>Rp.<span class="text-right">{{record.HARGA_SATUAN}}</span></td>
+                                <td><span class="text-right">{{record.JUMLAH_SEDIA}}</span></td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+            {% endif %}
+
+            <a href={% url 'index' %} class="btn btn-warning mt-10 {{hide}}">Clear Filter</a>
+        {% endblock contents %}
+
+    </main>
+</body>
+</html>

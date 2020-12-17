@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{message.tags}}">
+                <p>{{message}}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post" class="form-input">
+        {% csrf_token %}
+
+        <select name="column" id="column-filter">
+            <option value="kode_obat">Kode Obat</option>
+            <option value="nama_obat">Nama Obat</option>
+            <option value="bentuk_obat">Bentuk Obat</option>
+            <option value="tgl_produksi">Tgl Produksi</option>
+            <option value="tgl_kadaluarsa">Tgl Kadaluarsa</option>
+            <option value="harga_satuan">Harga Satuan</option>
+        </select>
+
+        <input type="text" class="input" id="filter-query" name="value-filter" placeholder="Value Filter" required>
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+
+    </form>
+
+    <p class="primary {{hide}}">Filter berdasarkan <b>{{column}} = {{valueFilter}}</b></p>
+
+    {% if isEmpty %}
+        <h3 class="danger">Tidak ada data</h3>
+    {% else %}
+
+        <table border="1" cellpadding="10" rules="all">
+            <thead>
+                <tr>
+                    <th>Kode Obat</th>
+                    <th>Nama Obat</th>
+                    <th>Bentuk Obat</th>
+                    <th>Tgl Produksi</th>
+                    <th>Tgl Kadaluarsa</th>
+                    <th>Harga Satuan</th>
+
+                    {% if admin %}
+                        <th>Action</th>
+                    {% endif %}
+                </tr>
+            </thead>
+
+            <tbody>
+                
+                {% for record in records %}
+                    <tr>
+                        <td>{{record.kode_obat}}</td>
+                        <td>{{record.nama_obat}}</td>
+                        <td>{{record.bentuk_obat}}</td>
+                        <td>{{record.tgl_produksi}}</td>
+                        <td>{{record.tgl_kadaluarsa}}</td>
+                        <td>Rp.<span class="text-right">{{record.harga_satuan}}</span></td>
+
+                        {% if admin %}
+                            <td>
+                                <center>
+                                    <a href="{% url 'obat:edit' record.kode_obat %}" class="btn btn-warning content-center">Edit</a>
+                                </center>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    {% endif %}
+
+    <a href={% url 'obat:index' %} class="btn btn-warning mt-10 {{hide}}">Clear Filter</a>
+
+{% endblock contents %}

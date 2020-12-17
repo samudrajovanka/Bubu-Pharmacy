@@ -1,0 +1,17 @@
+{% load static %}
+<header>
+    <nav class="sidebar">
+        <p>Bubu Pharmacy</p>
+        <a class="item-nav {{dashboardActive}}" href="{% url 'index' %}">Dashboard</a>
+        <a class="item-nav {{obatActive}}" href="{% url 'obat:index' %}">Obat</a>
+        <a class="item-nav {{persediaanActive}}" href="{% url 'persediaan:index' %}">Persedian Obat</a>
+        
+        {% if not admin %}
+            <a class="item-nav bottom-nav {{loginActive}}" href="{% url 'login' %}">Log In</a>
+        {% else %}
+            <a class="item-nav {{transaksiActive}}" href="{% url 'transaksi:index' %}">Transaksi</a>
+            <a class="item-nav {{logTransaksiActive}}" href="{% url 'transaksi:log' %}">Log Transaksi</a>
+            <a class="item-nav bottom-nav {{logoutActive}}" href="{% url 'logout' %}">Log Out</a>
+        {% endif %}
+    </nav>
+</header>

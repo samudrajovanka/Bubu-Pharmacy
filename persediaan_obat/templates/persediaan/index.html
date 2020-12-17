@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+
+    <form method="post" class="form-input">
+        {% csrf_token %}
+
+        <select name="column" id="column-filter">
+            <option value="kode_obat">Kode Obat</option>
+            <option value="jumlah_sedia">Jumlah Sedia</option>
+        </select>
+
+        <input type="text" class="input" id="filter-query" name="value-filter" placeholder="Value Filter" required>
+
+        <button type="submit" class="btn btn-primary">Filter</button>
+
+    </form>
+
+    <p class="primary {{hide}}">Filter berdasarkan <b>{{column}} = {{valueFilter}}</b></p>
+
+    {% if isEmpty %}
+        <h3 class="danger">Tidak ada data</h3>
+    {% else %}
+
+        <table border="1" cellpadding="10" rules="all">
+            <thead>
+                <tr>
+                    <th>Kode Obat</th>
+                    <th>Jumlah Sedia</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <td>{{record.kode_obat}}</td>
+                        <td><span class="text-right">{{record.jumlah_sedia}}</span></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    {% endif %}
+
+    <a href={% url 'persediaan:index' %} class="btn btn-warning mt-10 {{hide}}">Clear Filter</a>
+
+
+{% endblock contents %}

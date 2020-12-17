@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+    {% if lengthTable == 0 %}
+        <h3 class="danger">Tidak ada transaksi</h3>
+    {% else %}
+        {% if showAll %}
+            <a href="{% url 'transaksi:log' %}" class="btn btn-primary">Lihat Rinci</a>
+            <h3 class="primary">Semua Transaksi</h3>
+            <table border="1" cellpadding="10" rules="all">
+                <thead>
+                    <tr>
+                        <th>Kode Obat</th>
+                        <th>Tgl Transaksi</th>
+                        <th>Jumlah Terjual</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for record in records %}
+                        <tr>    
+                            <td>{{record.kode_obat}}</td>
+                            <td>{{record.tgl_transaksi}}</td>
+                            <td><span class="text-right">{{record.jumlah_terjual}}</span></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+
+            <a href="{% url 'transaksi:detail'%}" class="btn btn-primary">Lihat Detail</a>
+            <div class="grid-container {{grid2}}">
+                {% if lengthJanuari != 0 %}
+                    <div>
+                        <h3 class="primary">Januari</h3>
+                        <table border="1" cellpadding="10" rules="all">
+                            <thead>
+                                <tr>
+                                    <th>Kode Obat</th>
+                                    <th>Tgl Transaksi</th>
+                                    <th>Jumlah Terjual</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for record in recordsJanuari %}
+                                    <tr>    
+                                        <td>{{record.kode_obat}}</td>
+                                        <td>{{record.tgl_transaksi}}</td>
+                                        <td><span class="text-right">{{record.jumlah_terjual}}</span></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if lengthFebruari != 0 %}
+                    <div>
+                        <h3 class="primary">Februari</h3>
+                        <table border="1" cellpadding="10" rules="all">
+                            <thead>
+                                <tr>
+                                    <th>Kode Obat</th>
+                                    <th>Tgl Transaksi</th>
+                                    <th>Jumlah Terjual</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for record in recordsFebruari %}
+                                    <tr>    
+                                        <td>{{record.kode_obat}}</td>
+                                        <td>{{record.tgl_transaksi}}</td>
+                                        <td><span class="text-right">{{record.jumlah_terjual}}</span></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if lengthMaret != 0 %}
+                    <div>
+                        <h3 class="primary">Maret</h3>
+                        <table border="1" cellpadding="10" rules="all">
+                            <thead>
+                                <tr>
+                                    <th>Kode Obat</th>
+                                    <th>Tgl Transaksi</th>
+                                    <th>Jumlah Terjual</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for record in recordsMaret %}
+                                    <tr>    
+                                        <td>{{record.kode_obat}}</td>
+                                        <td>{{record.tgl_transaksi}}</td>
+                                        <td><span class="text-right">{{record.jumlah_terjual}}</span></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+
+                {% if lengthApril != 0 %}
+                    <div>
+                        <h3 class="primary">April</h3>
+                        <table border="1" cellpadding="10" rules="all">
+                            <thead>
+                                <tr>
+                                    <th>Kode Obat</th>
+                                    <th>Tgl Transaksi</th>
+                                    <th>Jumlah Terjual</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for record in recordsApril %}
+                                    <tr>    
+                                        <td>{{record.kode_obat}}</td>
+                                        <td>{{record.tgl_transaksi}}</td>
+                                        <td><span class="text-right">{{record.jumlah_terjual}}</span></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+                
+            </div>
+
+        {% endif %}
+    {% endif %}
+{% endblock contents %}
