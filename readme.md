@@ -24,3 +24,9 @@ Bubu Pharmacy is a website that displays various kinds of drugs, drug supplies, 
 
 ### Note
 Before running this project, make sure you have the necessary databases and tables.
+
+###### © Copyright 2020 - Kelompok 3 Praktikum Basis Data Lanjut
+###### - 1910511007 Harvey Guharelvino Prabowo
+###### - 1910511034 Marshall Anugrah Najmi
+###### - 1910511040 Jovanka Samudra
+###### - 1910511105 Sultan Farel Syah Reza
