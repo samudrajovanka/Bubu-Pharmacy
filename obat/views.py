@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
-import pyodbc
 from django.utils.safestring import mark_safe
 import datetime
 import modules as database

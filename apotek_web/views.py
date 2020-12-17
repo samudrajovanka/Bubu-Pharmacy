@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-import pyodbc
 import modules as database
     
 def index(request):    
