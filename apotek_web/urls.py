@@ -1,7 +1,7 @@
 from django.conf.urls import url, include, handler404
 from django.contrib import admin
 
-handler404 = 'apotek_web.views.pageNotFound'
+# handler404 = 'apotek_web.views.pageNotFound'
 
 from . import views
 

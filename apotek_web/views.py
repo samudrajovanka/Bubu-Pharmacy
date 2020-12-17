@@ -89,5 +89,5 @@ def logout(request):
     
     return render(request, 'logout.html', context)
 
-def pageNotFound(request):
-    return render(request, '404.html')
+# def pageNotFound(request):
+#     return render(request, '404.html')
