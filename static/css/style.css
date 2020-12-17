@@ -125,6 +125,10 @@ main.content {
 /* end transaksi */
 /* end main */
 
+#not-found-title {
+  text-align: center;
+}
+
 @media screen and (max-height: 450px) {
   .container-bottom-nav {
     position: relative;
@@ -148,9 +152,7 @@ main.content {
   }
 
   .container-bottom-nav {
-    right: 0;
-    width: 100px;
-    background-color: none;
+    position: relative;
   }
 
   main.content {
@@ -162,21 +164,6 @@ main.content {
   }
 
   .content .title {
-    text-align: center;
-  }
-
-}
-
-@media screen and (max-width: 600px) {
-  .sidebar .item-nav {
-    text-align: center;
-    float: none;
-  }
-
-  .container-bottom-nav {
-    width: 100%;
-    display: block;
-    position: relative;
     text-align: center;
   }
 
@@ -199,14 +186,14 @@ main.content {
     grid-column-end: 3;
   }
 
+  .content table#table-stock {
+    display: table;
+  }
+
   .content table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;
-  }
-
-  .content table#table-stock {
-    display: table;
   }
 
   .login-form {
@@ -220,6 +207,27 @@ main.content {
   .grid-container.grid-2#container_transaksi {
     grid-template-columns: 100%;
     row-gap: 30px;
+  }
+
+  .grid-container.grid-2#container-log-transaksi {
+    grid-template-columns: 100%;
+  }
+
+  .grid-container.grid-2#container-log-transaksi table,
+  .content table#table-log-detail-transaksi {
+    display: table;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .sidebar .item-nav {
+    text-align: center;
+    float: none;
+  }
+
+  .container-bottom-nav {
+    width: 100%;
+    text-align: center;
   }
 
   .grid-container.grid-2#container-log-transaksi {
