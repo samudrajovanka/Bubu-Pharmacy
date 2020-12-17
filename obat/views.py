@@ -28,12 +28,28 @@ def index(request):
 def filterData(request, **query):
     column = query['column']
     
+    isValid = False
     if column == 'tgl_produksi' or column == 'tgl_kadaluarsa':
         valueFilter = query['value'].strip()
+        valueSplit = valueFilter.split('-')
+        
+        if len(valueSplit[0]) == 4 and valueSplit[0].isnumeric():
+            if (len(valueSplit[1]) == 2 or len(valueSplit[1]) == 1) and valueSplit[1].isnumeric():
+                if (len(valueSplit[2]) == 2 or len(valueSplit[2]) == 1) and valueSplit[2].isnumeric():
+                    isValid = True
     else:
         valueFilter = ' '.join(query['value'].strip().split('-'))
+        
+        if column == 'harga_satuan' and not valueFilter.isnumeric():
+            isValid = False
+        else:
+            isValid = True
     
-    records = database.filterData('OBAT', column, valueFilter)
+    records = []
+    isEmpty = True
+    if isValid:
+        records = database.filterData('OBAT', column, valueFilter)
+        isEmpty = True if len(records) == 0 else False
     
     if request.method == 'POST':
         column = request.POST['column']
@@ -47,7 +63,7 @@ def filterData(request, **query):
         'records': records,
         'column': ' '.join(column.split('_')),
         'valueFilter': valueFilter,
-        'isEmpty': True if len(records) == 0 else False,
+        'isEmpty': isEmpty,
         'admin': request.session['admin'] if 'admin' in request.session else False
     }
     

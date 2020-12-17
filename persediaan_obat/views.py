@@ -23,16 +23,24 @@ def index(request):
     return render(request, 'persediaan/index.html', context)
 
 def filterData(request, **query):
-    column = query['column']    
-    valueFilter = ' '.join(query['value'].split('-'))
-    
-    records = database.filterData('PERSEDIAAN', column, valueFilter)
-    
     if request.method == 'POST':
         column = request.POST['column']
         valueFilter = '-'.join(request.POST['value-filter'].split())
         
         return redirect('persediaan:filter', column, valueFilter)
+    
+    column = query['column']    
+    valueFilter = ' '.join(query['value'].split('-'))
+    
+    isValid = True
+    isEmpty = True
+    if column == 'jumlah_sedia' and not valueFilter.isnumeric():
+        isValid = False
+    
+    records = []
+    if isValid:
+        records = database.filterData('PERSEDIAAN', column, valueFilter)
+        isEmpty = True if len(records) == 0 else False
     
     context = {
         'title': 'Persediaan Obat',
@@ -40,7 +48,7 @@ def filterData(request, **query):
         'records': records,
         'column': ' '.join(column.split('_')),
         'valueFilter': valueFilter,
-        'isEmpty': True if len(records) == 0 else False,
+        'isEmpty': isEmpty,
         'admin': request.session['admin'] if 'admin' in request.session else False
     }
     
