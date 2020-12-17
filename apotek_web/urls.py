@@ -9,6 +9,7 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
     url(r'^filter/(?P<column>[\w-]+)/(?P<value>[\w-]+)$', views.filterData, name='filter'),
+    url(r"^credits/$", views.credits, name="credits"),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', views.logout, name='logout'),
     url(r'^obat/', include('obat.urls', namespace='obat')),

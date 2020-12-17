@@ -42,11 +42,14 @@
   color: var(--dark-blue);
 }
 
-.bottom-nav {
-  width: 100%;
-  position: absolute;
-  bottom: 0;
+.sidebar .item-nav#login,
+.sidebar .item-nav#logout {
   background-color: var(--light-blue);
+}
+
+.sidebar .item-nav#login.active,
+.sidebar .item-nav#logout.active {
+  background-color: var(--yellow);
 }
 /* end side bar */
 
@@ -122,6 +125,17 @@ main.content {
 /* end transaksi */
 /* end main */
 
+@media screen and (max-height: 450px) {
+  .container-bottom-nav {
+    position: relative;
+  }
+
+  .container-bottom-nav .item-nav#login,
+  .container-bottom-nav .item-nav#logout {
+    background-color: transparent;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .sidebar {
     width: 100%;
@@ -129,14 +143,14 @@ main.content {
     position: relative;
   }
 
-  .sidebar a {
+  .sidebar .item-nav {
     float: left;
   }
 
-  .bottom-nav {
+  .container-bottom-nav {
     right: 0;
     width: 100px;
-    background-color: transparent;
+    background-color: none;
   }
 
   main.content {
@@ -153,9 +167,62 @@ main.content {
 
 }
 
-@media screen and (max-width: 400px) {
-  .sidebar a {
+@media screen and (max-width: 600px) {
+  .sidebar .item-nav {
     text-align: center;
     float: none;
+  }
+
+  .container-bottom-nav {
+    width: 100%;
+    display: block;
+    position: relative;
+    text-align: center;
+  }
+
+  .container-bottom-nav .item-nav#login,
+  .container-bottom-nav .item-nav#logout {
+    background-color: transparent;
+  }
+
+  .content .form-input {
+    width: 100%;
+    grid-template-columns: auto auto;
+    row-gap: 10px;
+    margin-bottom: 30px;
+    column-gap: 10px;
+    display: grid;
+  }
+
+  .btn.btn-primary#btn-filter {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .content table#table-stock {
+    display: table;
+  }
+
+  .login-form {
+    width: 100%;
+  }
+
+  #btn-login {
+    width: 100%;
+  }
+
+  .grid-container.grid-2#container_transaksi {
+    grid-template-columns: 100%;
+    row-gap: 30px;
+  }
+
+  .grid-container.grid-2#container-log-transaksi {
+    grid-template-columns: 100%;
   }
 }

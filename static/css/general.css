@@ -140,3 +140,16 @@ input[readonly] {
 .block {
   width: 100%;
 }
+
+.content-center-window {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container-bottom-nav {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}

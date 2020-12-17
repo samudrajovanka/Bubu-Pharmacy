@@ -105,5 +105,13 @@ def logout(request):
     
     return render(request, 'logout.html', context)
 
+def credits(request):
+    context = {
+        'title': 'Credits',
+        'creditsActive': 'active'
+    }
+    
+    return render(request, 'credits.html', context)
+
 def pageNotFound(request):
     return render(request, '404.html')
