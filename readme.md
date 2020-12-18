@@ -4,7 +4,7 @@ Bubu Pharmacy is a website that displays various kinds of drugs, drug supplies, 
 ---
 
 ## Tools Required
- - Framework Djando v.1.11 LTS
+ - Web Framework Django v.1.11 LTS
  - Module Pyodbc
 
 ### How to install tools
