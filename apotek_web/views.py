@@ -107,7 +107,8 @@ def logout(request):
 def credits(request):
     context = {
         'title': 'Credits',
-        'creditsActive': 'active'
+        'creditsActive': 'active',
+        'admin': request.session['admin'] if 'admin' in request.session else False
     }
     
     return render(request, 'credits.html', context)
