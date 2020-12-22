@@ -251,3 +251,6 @@ insert into PENJUALAN_MARET values
 	('SRSCF1723','20190315',6)
 insert into PENJUALAN_MARET values
 	('TBALD1723','20190330',21)
+
+----------------- update stock untuk pembelian april
+UPDATE PERSEDIAAN SET jumlah_sedia = jumlah_sedia - 50 WHERE kode_obat = 'SLMNZ1520'
