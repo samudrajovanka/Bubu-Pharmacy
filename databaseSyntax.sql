@@ -24,6 +24,8 @@ SELECT * FROM OBAT
 SELECT * FROM OBAT where tgl_produksi = '2-2-2017'
 SELECT kode_obat FROM OBAT
 
+UPDATE OBAT SET harga_satuan WHERE kode_obat = "KPRNS1723"
+
 ------------- table persediaan
 drop table persediaan
 create table PERSEDIAAN(
